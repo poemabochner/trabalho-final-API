@@ -7,3 +7,13 @@
 <a href="https://github.com/poemabochner/trabalho-final-API/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/poemabochner/trabalho-final-API"></a>
 <a href="https://github.com/poemabochner/trabalho-final-API/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/poemabochner/trabalho-final-API"></a>
 
+# Índice 🧾
+
+* [Título e Imagem de capa](#Título-e-Imagem-de-capa)
+* [Status do Projeto](#status-do-Projeto)
+* [Badges](#badges)
+* [Índice](#índice)
+* [Descrição do Projeto](#descrição-do-projeto)
+* [Tecnologias utilizadas](#tecnologias-utilizadas)
+* [Pessoas Contribuidoras](#pessoas-contribuidoras)
+* [Pessoas Desenvolvedoras do Projeto](#pessoas-desenvolvedoras)
