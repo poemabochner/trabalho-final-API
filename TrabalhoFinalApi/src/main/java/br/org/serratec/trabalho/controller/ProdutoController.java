@@ -2,13 +2,11 @@ package br.org.serratec.trabalho.controller;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -54,23 +52,18 @@ public class ProdutoController {
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Produto> atualizar(@PathVariable Long id, @Valid @RequestBody Produto produto) {
-		Optional<Produto> produtoBanco = produtoRepository.findById(id);
-		if (!produtoBanco.isPresent()) {
-			return ResponseEntity.notFound().build();
-		}
-		produto.setIdProduto(id);
-		produto = produtoRepository.save(produto);
+
 		return ResponseEntity.ok(produto);
 	}
 
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> excluir(@PathVariable Long id) {
-		Optional<Produto> produtoBanco = produtoRepository.findById(id);
-		if (!produtoBanco.isPresent()) {
-			return ResponseEntity.notFound().build();
-		}
-		produtoRepository.deleteById(id);
-		return ResponseEntity.noContent().build();
-	}
+//	@DeleteMapping("/{id}")
+//	public ResponseEntity<Void> excluir(@PathVariable Long id) {
+//		Optional<Produto> produtoBanco = produtoRepository.findById(id);
+//		if (!produtoBanco.isPresent()) {
+//			return ResponseEntity.notFound().build();
+//		}
+//		produtoRepository.deleteById(id);
+//		return ResponseEntity.noContent().build();
+//	}
 
 }

@@ -47,6 +47,7 @@ public class Produto {
 	private Double valorUnitario;
 
 //	@Lob
+//	@Type(type="org.hibernate.type.BinaryType")
 //	private byte[] imagem;
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

@@ -13,8 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -30,10 +33,12 @@ public class Cliente {
 	private String nomeCompleto;
 
 	@NotBlank
+	@Email
 	@Column(name = "email", nullable = false, length = 80, unique = true)
 	private String email;
 
 	@NotBlank
+	@CPF
 	@Column(name = "cpf", nullable = false, length = 11, unique = true)
 	private String cpf;
 
@@ -47,7 +52,7 @@ public class Cliente {
 	private LocalDate dataNascimento;
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_endereco")
+	@JoinColumn(name = "id_endereco", nullable = false)
 	private Endereco endereco;
 
 	public Long getIdCliente() {

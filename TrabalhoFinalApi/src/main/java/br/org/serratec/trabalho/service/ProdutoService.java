@@ -29,13 +29,15 @@ public class ProdutoService {
 		return produto.get();
 	}
 
-//	public Produto alterar(Long id, Produto produto) {
-//		Optional<Produto> produtoBanco = produtoRepository.findById(id);
-//		
-//		if(produtoBanco.isEmpty()) {
-//			throw new 
-//		}
-//
-//	}
+	public Produto alterar(Long id, Produto produto) {
+		Optional<Produto> produtoBanco = produtoRepository.findById(id);
+		if (!produtoBanco.isPresent()) {
+//			return ResponseEntity.notFound().build();
+			// TODO LANÇAR A exception 404
+		}
+		produto.setIdProduto(id);
+		produto = produtoRepository.save(produto);
+		return produto;
+	}
 
 }

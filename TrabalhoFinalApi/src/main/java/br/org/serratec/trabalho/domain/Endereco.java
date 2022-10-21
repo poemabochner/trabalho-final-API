@@ -15,6 +15,7 @@ import javax.validation.constraints.NotBlank;
 public class Endereco {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_endereco")
 	private Long idEndereco;
 
 	@NotBlank
@@ -42,7 +43,7 @@ public class Endereco {
 	private String complemento;
 
 	@NotBlank
-	@Column(name = "uf", nullable = false, length = 80)
+	@Column(name = "uf", nullable = false, length = 2)
 	private String uf;
 
 	public Long getIdEndereco() {
