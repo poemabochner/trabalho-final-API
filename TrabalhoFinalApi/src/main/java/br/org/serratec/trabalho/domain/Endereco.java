@@ -38,7 +38,6 @@ public class Endereco {
 	@Column(name = "numero", nullable = false, length = 20)
 	private String numero;
 
-	@NotBlank
 	@Column(name = "complemento", length = 80)
 	private String complemento;
 

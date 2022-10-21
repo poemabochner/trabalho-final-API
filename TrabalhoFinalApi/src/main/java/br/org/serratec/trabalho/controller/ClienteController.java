@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.org.serratec.trabalho.domain.Cliente;
+import br.org.serratec.trabalho.dto.ClienteInserirDTO;
 import br.org.serratec.trabalho.service.ClienteService;
 
 @RestController
@@ -31,17 +32,18 @@ public class ClienteController {
 		return ResponseEntity.ok(clientes);
 	}
 
-	@PostMapping
-	public ResponseEntity<Cliente> inserir(@Valid @RequestBody Cliente cliente) {
-		cliente = clienteService.incluir(cliente);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cliente.getIdCliente())
-				.toUri();
-		return ResponseEntity.created(uri).body(cliente);
-	}
-
 	@GetMapping("/{id}")
 	public ResponseEntity<Cliente> buscarCliente(@PathVariable Long id) {
 		Cliente cliente = clienteService.buscaPorId(id);
 		return ResponseEntity.ok(cliente);
 	}
+
+	@PostMapping
+	public ResponseEntity<Cliente> inserir(@Valid @RequestBody ClienteInserirDTO clienteInserirDTO) {
+		Cliente cliente = clienteService.incluir(clienteInserirDTO);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cliente.getIdCliente())
+				.toUri();
+		return ResponseEntity.created(uri).body(cliente);
+	}
+
 }

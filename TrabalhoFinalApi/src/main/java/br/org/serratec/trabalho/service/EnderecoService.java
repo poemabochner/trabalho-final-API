@@ -24,10 +24,10 @@ public class EnderecoService {
 			Endereco enderecoBanco = new Endereco();
 
 			enderecoBanco.setCep(enderecoViaCep.get().getCep());
-			enderecoBanco.setBairro(enderecoViaCep.get().getBairro());
-			enderecoBanco.setComplemento(enderecoViaCep.get().getComplemento());
-			enderecoBanco.setCidade(enderecoViaCep.get().getLocalidade());
 			enderecoBanco.setRua(enderecoViaCep.get().getLogradouro());
+			enderecoBanco.setBairro(enderecoViaCep.get().getBairro());
+			enderecoBanco.setCidade(enderecoViaCep.get().getLocalidade());
+			enderecoBanco.setComplemento(enderecoViaCep.get().getComplemento());
 			enderecoBanco.setUf(enderecoViaCep.get().getUf());
 
 			return enderecoBanco;

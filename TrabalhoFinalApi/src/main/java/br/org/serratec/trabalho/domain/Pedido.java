@@ -49,13 +49,14 @@ public class Pedido {
 	@Column(name = "valor_total", nullable = false)
 	private Double valor_total;
 
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "id_cliente", nullable = false)
 	private Cliente cliente;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_pedido")
-	private List<PedidoIten> pedidoIten;
+	private List<PedidoIten> itens;
 
 	public Long getIdPedido() {
 		return idPedido;
@@ -114,11 +115,11 @@ public class Pedido {
 	}
 
 	public List<PedidoIten> getPedidoIten() {
-		return pedidoIten;
+		return itens;
 	}
 
 	public void setPedidoIten(List<PedidoIten> pedidoIten) {
-		this.pedidoIten = pedidoIten;
+		this.itens = pedidoIten;
 	}
 
 	@Override

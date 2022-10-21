@@ -19,13 +19,14 @@ public class CategoriaService {
 		return categoriaRepository.findAll();
 	}
 
+	public Categoria buscaPorId(Long id) {
+		Optional<Categoria> categoria = categoriaRepository.findById(id);
+		return categoria.get();
+	}
+
 	public Categoria incluir(Categoria categoria) {
 		categoria = categoriaRepository.save(categoria);
 		return categoria;
 	}
 
-	public Categoria buscaPorId(Long id) {
-		Optional<Categoria> categoria = categoriaRepository.findById(id);
-		return categoria.get();
-	}
 }
