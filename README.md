@@ -27,8 +27,19 @@
 
 
 # 🎀 Descrição do Projeto:
+Desenvolvemos a API-Restful de um E-commerce a partir das regras de negócio pré-estabelecidas durante o curso. As tabelas foram criadas de acordo com o DER fornecido na proposta do trabalho. <br>
+* `Funcionalidade 1:` Todos os endpoints e métodos CRUD estão disponibilizados.
+* `Funcionalidade 2:` Criação de um Relatório de Pedido com a utilização de DTO.
+* `Funcionalidade 3:` Em todos os métodos CRUD, as exceções de item não encontrado estão identificadas e tratadas com a exibição de mensagem personalizada.
+* `Funcionalidade 4:`
+* `Funcionalidade 5:`
+
 
 # 🌸 Tecnologias Utilizadas:
+* ``Java 11``
+* ``Spring Tool Suite 4``
+* ``DBeaver``
+* ``PostgreSQL``
 
 # ✨ Desenvolvedores:
 | [<img src="https://avatars.githubusercontent.com/u/105015617?s=400&u=faa75198a9ea80dc9ccf7dc1cf8692a689d3704d&v=4" width=115><br><sub>Poema Bochner</sub>](https://github.com/poemabochner) |  [<img src="https://avatars.githubusercontent.com/u/110872409?v=4" width=115><br><sub>Dani Amaral</sub>](https://github.com/daniamaral27) |  [<img src="https://avatars.githubusercontent.com/u/110869587?v=4" width=115><br><sub>Gabriel Simões</sub>](https://github.com/GabrielFsimoes) |  [<img src="https://avatars.githubusercontent.com/u/80910617?v=4" width=115><br><sub>José Pedro Nolasco</sub>](https://github.com/J-Pedr0) |  [<img src="https://avatars.githubusercontent.com/u/72826123?v=4" width=115><br><sub>Roberto Spagola</sub>](https://github.com/RobertoSpa) |
