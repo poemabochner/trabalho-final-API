@@ -1,4 +1,6 @@
-<h1 align="center"> Trabalho Final de API </h1>
+![logodeapi](https://user-images.githubusercontent.com/105015617/197340480-a413a4b9-f6fa-4755-8bf0-f672ac37ab87.png)
+
+
 <p align="center">
 <img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
 </p>
