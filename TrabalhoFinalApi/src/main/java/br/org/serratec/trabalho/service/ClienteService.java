@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.org.serratec.trabalho.config.MailConfig;
 import br.org.serratec.trabalho.domain.Cliente;
 import br.org.serratec.trabalho.domain.Endereco;
 import br.org.serratec.trabalho.dto.ClienteInserirDTO;
@@ -19,6 +20,9 @@ public class ClienteService {
 
 	@Autowired
 	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private MailConfig mailConfig;
 
 	@Autowired
 	private EnderecoService enderecoService;
@@ -61,6 +65,7 @@ public class ClienteService {
 		cliente.setEndereco(enderecoNovo);
 
 		cliente = clienteRepository.save(cliente);
+		mailConfig.sendEmail("gabrielsimoes703@gmail.com", "E-mail enviado!", "oii");
 		return cliente;
 	}
 
