@@ -13,15 +13,15 @@ import br.org.serratec.trabalho.domain.Cliente;
 public class PedidoInserirDTO {
 	@NotNull
 	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate data_pedidoInserida;
+	private LocalDate dataPedidoInserida;
 
 	@NotNull
 	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate data_entregaInserida;
+	private LocalDate dataEntregaInserida;
 
 	@NotNull
 	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate data_envioInserida;
+	private LocalDate dataEnvioInserida;
 
 	@NotBlank
 	private String statusInserido;
@@ -31,28 +31,28 @@ public class PedidoInserirDTO {
 
 	private List<PedidoItenInseridoDTO> itensInseridos;
 
-	public LocalDate getData_pedidoInserida() {
-		return data_pedidoInserida;
+	public LocalDate getDataPedidoInserida() {
+		return dataPedidoInserida;
 	}
 
-	public void setData_pedidoInserida(LocalDate data_pedidoInserida) {
-		this.data_pedidoInserida = data_pedidoInserida;
+	public void setDataPedidoInserida(LocalDate dataPedidoInserida) {
+		this.dataPedidoInserida = dataPedidoInserida;
 	}
 
-	public LocalDate getData_entregaInserida() {
-		return data_entregaInserida;
+	public LocalDate getDataEntregaInserida() {
+		return dataEntregaInserida;
 	}
 
-	public void setData_entregaInserida(LocalDate data_entregaInserida) {
-		this.data_entregaInserida = data_entregaInserida;
+	public void setDataEntregaInserida(LocalDate dataEntregaInserida) {
+		this.dataEntregaInserida = dataEntregaInserida;
 	}
 
-	public LocalDate getData_envioInserida() {
-		return data_envioInserida;
+	public LocalDate getDataEnvioInserida() {
+		return dataEnvioInserida;
 	}
 
-	public void setData_envioInserida(LocalDate data_envioInserida) {
-		this.data_envioInserida = data_envioInserida;
+	public void setDataEnvioInserida(LocalDate dataEnvioInserida) {
+		this.dataEnvioInserida = dataEnvioInserida;
 	}
 
 	public String getStatusInserido() {

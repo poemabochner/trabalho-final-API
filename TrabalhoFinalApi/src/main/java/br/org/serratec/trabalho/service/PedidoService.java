@@ -30,6 +30,26 @@ public class PedidoService {
 
 //	public Pedido incluir(PedidoInserirDTO pedidoInserirDTO) {
 //
+//		Pedido pedido = new Pedido();
+//		
+//		
+//		List<PedidoIten> lista = new ArrayList<>();
+//		
+//		for (PedidoItenInseridoDTO pedidoItenInserir : pedidoInserirDTO.getItensInseridos()) {
+//			PedidoIten pedidoiten = new PedidoIten();
+//			pedidoiten.setPercentual_desconto(pedidoItenInserir.getPercentualDesconto());
+//			pedidoiten.set
+//			
+//			
+//			
+//			
+//			lista.add(pedidoiten);
+//		}
+//		
+//		
+//		pedido.setPedidoIten(lista);
+//		
+//		
 //		Pedido pedido = pedidoRepository.save(pedido);
 //		return pedido;
 //	}
