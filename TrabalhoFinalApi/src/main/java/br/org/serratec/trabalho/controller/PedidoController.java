@@ -1,19 +1,13 @@
 package br.org.serratec.trabalho.controller;
 
-import java.net.URI;
 import java.util.List;
-
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.org.serratec.trabalho.domain.Pedido;
 import br.org.serratec.trabalho.repository.PedidoRepository;
@@ -35,13 +29,13 @@ public class PedidoController {
 		return ResponseEntity.ok(pedidos);
 	}
 
-	@PostMapping
-	public ResponseEntity<Pedido> inserir(@Valid @RequestBody Pedido pedido) {
-		pedido = pedidoService.incluir(pedido);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(pedido.getIdPedido())
-				.toUri();
-		return ResponseEntity.created(uri).body(pedido);
-	}
+//	@PostMapping
+//	public ResponseEntity<Pedido> inserir(@Valid @RequestBody PedidoInserirDTO pedidoInserirDTO) {
+//		Pedido pedido = pedidoService.incluir(pedidoInserirDTO);
+//		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(pedido.getIdPedido())
+//				.toUri();
+//		return ResponseEntity.created(uri).body(pedido);
+//	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Pedido> buscarPedido(@PathVariable Long id) {

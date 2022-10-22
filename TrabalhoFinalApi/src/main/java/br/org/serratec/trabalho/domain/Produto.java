@@ -3,7 +3,6 @@ package br.org.serratec.trabalho.domain;
 import java.time.LocalDate;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -50,7 +49,7 @@ public class Produto {
 //	@Type(type="org.hibernate.type.BinaryType")
 //	private byte[] imagem;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@NotNull
 	@JoinColumn(name = "id_categoria", nullable = false)
 	private Categoria categoria;

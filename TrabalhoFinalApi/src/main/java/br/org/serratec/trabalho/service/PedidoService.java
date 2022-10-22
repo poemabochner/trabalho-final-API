@@ -19,10 +19,11 @@ public class PedidoService {
 		return pedidoRepository.findAll();
 	}
 
-	public Pedido incluir(Pedido pedido) {
-		pedido = pedidoRepository.save(pedido);
-		return pedido;
-	}
+//	public Pedido incluir(PedidoInserirDTO pedidoInserirDTO) {
+//
+//		Pedido pedido = pedidoRepository.save(pedido);
+//		return pedido;
+//	}
 
 	public Pedido buscaPorId(Long id) {
 		Optional<Pedido> pedido = pedidoRepository.findById(id);

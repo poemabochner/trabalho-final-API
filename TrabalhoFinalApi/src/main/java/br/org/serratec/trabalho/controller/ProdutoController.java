@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.org.serratec.trabalho.domain.Produto;
-import br.org.serratec.trabalho.repository.ProdutoRepository;
+import br.org.serratec.trabalho.dto.ProdutoInserirDTO;
 import br.org.serratec.trabalho.service.ProdutoService;
 
 @RestController
@@ -27,21 +27,10 @@ public class ProdutoController {
 	@Autowired
 	private ProdutoService produtoService;
 
-	@Autowired
-	private ProdutoRepository produtoRepository;
-
 	@GetMapping
 	public ResponseEntity<List<Produto>> buscaTodos() {
 		List<Produto> produtos = produtoService.buscarTodos();
 		return ResponseEntity.ok(produtos);
-	}
-
-	@PostMapping
-	public ResponseEntity<Produto> inserir(@Valid @RequestBody Produto produto) {
-		produto = produtoService.incluir(produto);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(produto.getIdProduto())
-				.toUri();
-		return ResponseEntity.created(uri).body(produto);
 	}
 
 	@GetMapping("/{id}")
@@ -50,10 +39,17 @@ public class ProdutoController {
 		return ResponseEntity.ok(produto);
 	}
 
+	@PostMapping
+	public ResponseEntity<Produto> inserir(@Valid @RequestBody ProdutoInserirDTO produtoInserirDTO) {
+		Produto produto = produtoService.incluir(produtoInserirDTO);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(produto.getIdProduto())
+				.toUri();
+		return ResponseEntity.created(uri).body(produto);
+	}
+
 	@PutMapping("/{id}")
 	public ResponseEntity<Produto> atualizar(@PathVariable Long id, @Valid @RequestBody Produto produto) {
-
-		return ResponseEntity.ok(produto);
+		return ResponseEntity.ok(produtoService.alterar(id, produto));
 	}
 
 //	@DeleteMapping("/{id}")
