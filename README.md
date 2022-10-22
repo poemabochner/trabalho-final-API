@@ -31,4 +31,5 @@
 # 🌸 Tecnologias Utilizadas:
 
 # ✨ Desenvolvedores:
-
+| [<img src="https://avatars.githubusercontent.com/u/105015617?s=400&u=faa75198a9ea80dc9ccf7dc1cf8692a689d3704d&v=4" width=115><br><sub>Poema Bochner</sub>](https://github.com/poemabochner) |  [<img src="https://avatars.githubusercontent.com/u/110872409?v=4" width=115><br><sub>Dani Amaral</sub>](https://github.com/daniamaral27) |  [<img src="https://avatars.githubusercontent.com/u/110869587?v=4" width=115><br><sub>Gabriel Simões</sub>](https://github.com/GabrielFsimoes) |  [<img src="https://avatars.githubusercontent.com/u/80910617?v=4" width=115><br><sub>José Pedro Nolasco</sub>](https://github.com/J-Pedr0) |  [<img src="https://avatars.githubusercontent.com/u/72826123?v=4" width=115><br><sub>Roberto Spagola</sub>](https://github.com/RobertoSpa) |
+| :---: | :---: | :---: | :---: | :---: |
