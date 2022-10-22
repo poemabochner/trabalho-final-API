@@ -1,4 +1,4 @@
-![logodeapi](https://user-images.githubusercontent.com/105015617/197340480-a413a4b9-f6fa-4755-8bf0-f672ac37ab87.png)
+![Título e Logo](https://user-images.githubusercontent.com/105015617/197340480-a413a4b9-f6fa-4755-8bf0-f672ac37ab87.png)
 
 
 <p align="center">
@@ -17,7 +17,7 @@
 
 # 🍧 Índice:
 
-* [Título e Imagem de capa](#Título-e-Imagem-de-capa)
+* [Título e Logo](#Título-e-Logo)
 * [Status do Projeto](#status-do-Projeto)
 * [Badges](#badges)
 * [Índice](#índice)
