@@ -31,8 +31,9 @@ Desenvolvemos a API-Restful de um E-commerce a partir das regras de negócio pr�
 * `Funcionalidade 1:` Todos os endpoints e métodos CRUD estão disponibilizados.
 * `Funcionalidade 2:` Criação de um Relatório de Pedido com a utilização de DTO.
 * `Funcionalidade 3:` Em todos os métodos CRUD, as exceções de item não encontrado estão identificadas e tratadas com a exibição de mensagem personalizada.
-* `Funcionalidade 4:`
-* `Funcionalidade 5:`
+* `Funcionalidade 4:` As imagens dos Produtos estão armazenadas no Banco de Dados.
+* `Funcionalidade 5:` A cada novo pedido cadastrado um e-mail é enviado contendo o Relatório de Pedido.
+* `Funcionalidade 6:` A autenticação e o controle de acesso à API estão implementadas (com o módulo de segurança do Spring + JWT).
 
 
 # 🌸 Tecnologias Utilizadas:
