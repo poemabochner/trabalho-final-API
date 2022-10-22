@@ -1,12 +1,20 @@
 package br.org.serratec.trabalho.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import br.org.serratec.trabalho.domain.Categoria;
 
 public class ProdutoInserirDTO {
+	@NotBlank
 	private String nomeInserido;
+	@NotBlank
 	private String descricaoInserida;
+	@NotNull
 	private Integer qtdEstoqueInserida;
+	@NotNull
 	private Double valorUnitarioInserido;
+	@NotNull
 	private Categoria categoriaInserida;
 
 	public String getNomeInserido() {

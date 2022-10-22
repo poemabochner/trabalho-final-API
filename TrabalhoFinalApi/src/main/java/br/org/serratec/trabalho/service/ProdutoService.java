@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import br.org.serratec.trabalho.domain.Produto;
 import br.org.serratec.trabalho.dto.ProdutoInserirDTO;
 import br.org.serratec.trabalho.exception.DataNotFoundException;
+import br.org.serratec.trabalho.exception.DescricaoException;
 import br.org.serratec.trabalho.repository.ProdutoRepository;
 
 @Service
@@ -24,10 +25,22 @@ public class ProdutoService {
 
 	public Produto buscaPorId(Long id) {
 		Optional<Produto> produto = produtoRepository.findById(id);
+		if (!produto.isPresent()) {
+			throw new DataNotFoundException("O produto com o id:" + id + " não foi encontrado");
+		}
 		return produto.get();
 	}
 
 	public Produto incluir(ProdutoInserirDTO produtoInserirDTO) {
+		Optional<Produto> produtoOptional = produtoRepository
+				.findByDescricaoProduto(produtoInserirDTO.getDescricaoInserida());
+
+		Produto produtoBanco = produtoOptional.get();
+
+		if (produtoBanco.getDescricaoProduto().equals(produtoInserirDTO.getDescricaoInserida())) {
+			throw new DescricaoException(
+					"Já existe um produto com está descrição: " + produtoInserirDTO.getDescricaoInserida());
+		}
 
 		Produto produto = new Produto();
 
@@ -43,16 +56,37 @@ public class ProdutoService {
 	}
 
 	public Produto alterar(Long id, Produto produto) throws DataNotFoundException {
-		Optional<Produto> produtoBanco = produtoRepository.findById(id);
-		if (!produtoBanco.isPresent()) {
-//			return ResponseEntity.notFound().build();
+		Optional<Produto> produtoOptional = produtoRepository.findById(id);
+		Optional<Produto> produtoOptional2 = produtoRepository.findByDescricaoProduto(produto.getDescricaoProduto());
+
+		Produto produtoBanco2 = produtoOptional2.get();
+
+		if (!produtoOptional.isPresent()) {
 			throw new DataNotFoundException("O produto com o id:" + id + " não foi encontrado");
-			// TODO LANÇAR A exception 404
+		}
+		if (produtoBanco2.getDescricaoProduto().equals(produto.getDescricaoProduto())) {
+			throw new DescricaoException("Já existe um produto com está descrição: " + produto.getDescricaoProduto());
 		}
 
-		produto.setIdProduto(id);
-		produto = produtoRepository.save(produto);
-		return produto;
+		Produto produtoBanco = produtoOptional.get();
+
+		produtoBanco.setNomeProduto(produto.getNomeProduto());
+		produtoBanco.setDescricaoProduto(produto.getDescricaoProduto());
+		produtoBanco.setQuantidadeEstoque(produto.getQuantidadeEstoque());
+		produtoBanco.setDataCadastro(produto.getDataCadastro());
+		produtoBanco.setValorUnitario(produto.getValorUnitario());
+		produtoBanco.setCategoria(produto.getCategoria());
+
+		produtoBanco = produtoRepository.save(produtoBanco);
+		return produtoBanco;
+	}
+
+	public void deletar(Long id) {
+		Optional<Produto> produtoBanco = produtoRepository.findById(id);
+		if (!produtoBanco.isPresent()) {
+			throw new DataNotFoundException("O produto com o id:" + id + " não foi encontrado");
+		}
+		produtoRepository.deleteById(id);
 	}
 
 }

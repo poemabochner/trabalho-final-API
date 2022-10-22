@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +32,12 @@ public class CategoriaController {
 		return ResponseEntity.ok(categorias);
 	}
 
+	@GetMapping("/{id}")
+	public ResponseEntity<Categoria> buscarCategoria(@PathVariable Long id) {
+		Categoria categoria = categoriaService.buscaPorId(id);
+		return ResponseEntity.ok(categoria);
+	}
+
 	@PostMapping
 	public ResponseEntity<Categoria> inserir(@Valid @RequestBody Categoria categoria) {
 		categoria = categoriaService.incluir(categoria);
@@ -39,9 +46,9 @@ public class CategoriaController {
 		return ResponseEntity.created(uri).body(categoria);
 	}
 
-	@GetMapping("/{id}")
-	public ResponseEntity<Categoria> buscarCategoria(@PathVariable Long id) {
-		Categoria categoria = categoriaService.buscaPorId(id);
-		return ResponseEntity.ok(categoria);
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> excluir(@PathVariable Long id) {
+		categoriaService.deletar(id);
+		return ResponseEntity.noContent().build();
 	}
 }

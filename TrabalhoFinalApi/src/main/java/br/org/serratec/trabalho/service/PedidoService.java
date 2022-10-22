@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.org.serratec.trabalho.domain.Pedido;
+import br.org.serratec.trabalho.exception.DataNotFoundException;
 import br.org.serratec.trabalho.repository.PedidoRepository;
 
 @Service
@@ -19,14 +20,25 @@ public class PedidoService {
 		return pedidoRepository.findAll();
 	}
 
+	public Pedido buscaPorId(Long id) {
+		Optional<Pedido> pedido = pedidoRepository.findById(id);
+		if (!pedido.isPresent()) {
+			throw new DataNotFoundException("O produto com o id:" + id + " não foi encontrado");
+		}
+		return pedido.get();
+	}
+
 //	public Pedido incluir(PedidoInserirDTO pedidoInserirDTO) {
 //
 //		Pedido pedido = pedidoRepository.save(pedido);
 //		return pedido;
 //	}
 
-	public Pedido buscaPorId(Long id) {
-		Optional<Pedido> pedido = pedidoRepository.findById(id);
-		return pedido.get();
+	public void deletar(Long id) {
+		Optional<Pedido> produtoBanco = pedidoRepository.findById(id);
+		if (!produtoBanco.isPresent()) {
+			throw new DataNotFoundException("O produto com o id:" + id + " não foi encontrado");
+		}
+		pedidoRepository.deleteById(id);
 	}
 }

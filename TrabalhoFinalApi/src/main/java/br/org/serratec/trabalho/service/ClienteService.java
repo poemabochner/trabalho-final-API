@@ -10,6 +10,7 @@ import br.org.serratec.trabalho.domain.Cliente;
 import br.org.serratec.trabalho.domain.Endereco;
 import br.org.serratec.trabalho.dto.ClienteInserirDTO;
 import br.org.serratec.trabalho.exception.CPFException;
+import br.org.serratec.trabalho.exception.DataNotFoundException;
 import br.org.serratec.trabalho.exception.EmailException;
 import br.org.serratec.trabalho.repository.ClienteRepository;
 
@@ -28,6 +29,9 @@ public class ClienteService {
 
 	public Cliente buscaPorId(Long id) {
 		Optional<Cliente> cliente = clienteRepository.findById(id);
+		if (!cliente.isPresent()) {
+			throw new DataNotFoundException("O cliente com o id:" + id + " não foi encontrado");
+		}
 		return cliente.get();
 	}
 
@@ -58,6 +62,31 @@ public class ClienteService {
 
 		cliente = clienteRepository.save(cliente);
 		return cliente;
+	}
+
+	public Cliente alterar(Long id, Cliente cliente) throws DataNotFoundException {
+		Optional<Cliente> clienteOptional = clienteRepository.findById(id);
+		if (!clienteOptional.isPresent()) {
+			throw new DataNotFoundException("O cliente com o id:" + id + " não foi encontrado");
+		}
+		Cliente clienteBanco = clienteOptional.get();
+
+		clienteBanco.setNomeCompleto(cliente.getNomeCompleto());
+		clienteBanco.setCpf(cliente.getCpf());
+		clienteBanco.setTelefone(cliente.getTelefone());
+		clienteBanco.setDataNascimento(cliente.getDataNascimento());
+		clienteBanco.setEndereco(cliente.getEndereco());
+
+		clienteBanco = clienteRepository.save(clienteBanco);
+		return clienteBanco;
+	}
+
+	public void deletar(Long id) {
+		Optional<Cliente> clienteBanco = clienteRepository.findById(id);
+		if (!clienteBanco.isPresent()) {
+			throw new DataNotFoundException("O cliente com o id:" + id + " não foi encontrado");
+		}
+		clienteRepository.deleteById(id);
 	}
 
 }

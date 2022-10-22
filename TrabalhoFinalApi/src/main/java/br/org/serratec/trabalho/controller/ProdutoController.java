@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,14 +53,10 @@ public class ProdutoController {
 		return ResponseEntity.ok(produtoService.alterar(id, produto));
 	}
 
-//	@DeleteMapping("/{id}")
-//	public ResponseEntity<Void> excluir(@PathVariable Long id) {
-//		Optional<Produto> produtoBanco = produtoRepository.findById(id);
-//		if (!produtoBanco.isPresent()) {
-//			return ResponseEntity.notFound().build();
-//		}
-//		produtoRepository.deleteById(id);
-//		return ResponseEntity.noContent().build();
-//	}
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> excluir(@PathVariable Long id) {
+		produtoService.deletar(id);
+		return ResponseEntity.noContent().build();
+	}
 
 }
