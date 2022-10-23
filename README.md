@@ -23,10 +23,10 @@
 * [Índice](#índice)
 * [Descrição do Projeto](#descrição-do-projeto)
 * [Tecnologias Utilizadas](#tecnologias-utilizadas)
-* [Desenvolvedores](#pessoas-contribuidoras)
+* [Desenvolvedores](#desenvolvedores)
 
 
-# 🎀 Descrição do Projeto:
+# <a name="descrição-do-projeto"></a>🎀 Descrição do Projeto:
 Desenvolvemos a API-Restful de um E-commerce a partir das regras de negócio pré-estabelecidas durante o curso. As tabelas foram criadas de acordo com o DER fornecido na proposta do trabalho. <br>
 * `Funcionalidade 1:` Todos os endpoints e métodos CRUD estão disponibilizados.
 * `Funcionalidade 2:` Criação de um Relatório de Pedido com a utilização de DTO.
