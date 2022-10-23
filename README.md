@@ -19,7 +19,7 @@
 
 * [Título e Logo](#Título-e-Logo)
 * [Status do Projeto](#status-do-Projeto)
-* [Badges](#🌺-Badges:)
+* [Badges](#badges)
 * [Índice](#índice)
 * [Descrição do Projeto](#descrição-do-projeto)
 * [Tecnologias Utilizadas](#tecnologias-utilizadas)
