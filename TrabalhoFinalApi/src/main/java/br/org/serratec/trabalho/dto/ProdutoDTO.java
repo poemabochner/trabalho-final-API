@@ -1,28 +1,25 @@
-package br.org.serratec.trabalho.domain;
+package br.org.serratec.trabalho.dto;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.Type;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity
-@Table(name = "produto")
-public class Produto {
+import br.org.serratec.trabalho.domain.Categoria;
+import br.org.serratec.trabalho.domain.Produto;
+
+public class ProdutoDTO {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idProduto;
@@ -52,15 +49,9 @@ public class Produto {
 	@NotNull
 	@JoinColumn(name = "id_categoria", nullable = false)
 	private Categoria categoria;
-	
-	@Lob
-	@Type(type="org.hibernate.type.BinaryType")
-	@Column(name = "imagem", nullable = false)
-	private byte[] imagem;
-	
-	@NotBlank
-	@Column(name = "tipo_arquivo", length = 100)
-	private String tipoArquivo;
+
+	public ProdutoDTO(Produto produto) {
+	}
 
 	public Long getIdProduto() {
 		return idProduto;
@@ -110,29 +101,12 @@ public class Produto {
 		this.valorUnitario = valorUnitario;
 	}
 
-
 	public Categoria getCategoria() {
 		return categoria;
 	}
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
-	}
-
-	public byte[] getImagem() {
-		return imagem;
-	}
-
-	public void setImagem(byte[] imagem) {
-		this.imagem = imagem;
-	}
-
-	public String getTipoArquivo() {
-		return tipoArquivo;
-	}
-
-	public void setTipoArquivo(String tipoArquivo) {
-		this.tipoArquivo = tipoArquivo;
 	}
 
 	@Override
@@ -148,7 +122,7 @@ public class Produto {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Produto other = (Produto) obj;
+		ProdutoDTO other = (ProdutoDTO) obj;
 		return Objects.equals(idProduto, other.idProduto);
 	}
 

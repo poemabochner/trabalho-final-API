@@ -1,0 +1,1 @@
+ALTER TABLE produto ADD tipo_arquivo varchar(100);
