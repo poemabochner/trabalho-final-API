@@ -24,22 +24,23 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Pedido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_pedido")
 	private Long idPedido;
 
 	@NotNull
 	@Column(name = "data_pedido", nullable = false)
 	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate data_pedido;
+	private LocalDate dataPedido;
 
 	@NotNull
 	@Column(name = "data_entrega")
 	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate data_entrega;
+	private LocalDate dataEntrega;
 
 	@NotNull
 	@Column(name = "data_envio")
 	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate data_envio;
+	private LocalDate dataEnvio;
 
 	@NotBlank
 	@Column(name = "status", nullable = false, length = 1)
@@ -47,7 +48,7 @@ public class Pedido {
 
 	@NotNull
 	@Column(name = "valor_total", nullable = false)
-	private Double valor_total;
+	private Double valorTotal;
 
 	@NotNull
 	@ManyToOne
@@ -66,28 +67,28 @@ public class Pedido {
 		this.idPedido = idPedido;
 	}
 
-	public LocalDate getData_pedido() {
-		return data_pedido;
+	public LocalDate getDataPedido() {
+		return dataPedido;
 	}
 
-	public void setData_pedido(LocalDate data_pedido) {
-		this.data_pedido = data_pedido;
+	public void setDataPedido(LocalDate dataPedido) {
+		this.dataPedido = dataPedido;
 	}
 
-	public LocalDate getData_entrega() {
-		return data_entrega;
+	public LocalDate getDataEntrega() {
+		return dataEntrega;
 	}
 
-	public void setData_entrega(LocalDate data_entrega) {
-		this.data_entrega = data_entrega;
+	public void setDataEntrega(LocalDate dataEntrega) {
+		this.dataEntrega = dataEntrega;
 	}
 
-	public LocalDate getData_envio() {
-		return data_envio;
+	public LocalDate getDataEnvio() {
+		return dataEnvio;
 	}
 
-	public void setData_envio(LocalDate data_envio) {
-		this.data_envio = data_envio;
+	public void setDataEnvio(LocalDate dataEnvio) {
+		this.dataEnvio = dataEnvio;
 	}
 
 	public String getStatus() {
@@ -98,12 +99,12 @@ public class Pedido {
 		this.status = status;
 	}
 
-	public Double getValor_total() {
-		return valor_total;
+	public Double getValorTotal() {
+		return valorTotal;
 	}
 
-	public void setValor_total(Double valor_total) {
-		this.valor_total = valor_total;
+	public void setValorTotal(Double valorTotal) {
+		this.valorTotal = valorTotal;
 	}
 
 	public Cliente getCliente() {

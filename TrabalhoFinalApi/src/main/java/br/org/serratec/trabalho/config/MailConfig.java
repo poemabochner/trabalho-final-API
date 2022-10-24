@@ -5,17 +5,20 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
+import br.org.serratec.trabalho.dto.RelatorioDTO;
+
 @Configuration
 public class MailConfig {
 	@Autowired
 	private JavaMailSender javaMailSender;
 
-	public void sendEmail(String para, String assunto, String texto) {
+	public void sendEmail(String para, RelatorioDTO relatorioDTO) {
 		SimpleMailMessage message = new SimpleMailMessage();
-		message.setFrom("poemabochner8@gmail.com");
+		message.setFrom("taldapispagola@gmail.com");
 		message.setTo(para);
-		message.setSubject(assunto);
-		message.setText("Dados da inscrição: \n" + texto + "\n\n\nSerratec Residência de Software");
+		message.setSubject("Pedido Registrado!!!");
+		message.setText("Relatório: \n\n" + relatorioDTO.toString());
+
 		javaMailSender.send(message);
 	}
 }

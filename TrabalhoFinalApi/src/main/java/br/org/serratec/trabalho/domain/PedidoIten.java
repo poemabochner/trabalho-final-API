@@ -12,11 +12,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "item_pedido")
 public class PedidoIten {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_item_pedido")
 	private Long idPedidoIten;
 
 	@NotNull
@@ -25,24 +28,29 @@ public class PedidoIten {
 
 	@NotNull
 	@Column(name = "preco_venda", nullable = false)
-	private Double preco_venda;
+	private Double precoVenda;
 
 	@NotNull
 	@Column(name = "percentual_desconto", nullable = false)
-	private Double percentual_desconto;
+	private Double percentualDesconto;
 
 	@NotNull
 	@Column(name = "valor_bruto", nullable = false)
-	private Double valor_bruto;
+	private Double valorBruto;
 
 	@NotNull
 	@Column(name = "valor_liquido", nullable = false)
-	private Double valor_liquido;
+	private Double valorLiquido;
 
 	@ManyToOne
 	@NotNull
 	@JoinColumn(name = "id_produto")
 	private Produto produto;
+
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "id_pedido")
+	private Pedido pedido;
 
 	public Long getIdPedidoIten() {
 		return idPedidoIten;
@@ -60,36 +68,36 @@ public class PedidoIten {
 		this.quantidade = quantidade;
 	}
 
-	public Double getPreco_venda() {
-		return preco_venda;
+	public Double getPrecoVenda() {
+		return precoVenda;
 	}
 
-	public void setPreco_venda(Double preco_venda) {
-		this.preco_venda = preco_venda;
+	public void setPrecoVenda(Double precoVenda) {
+		this.precoVenda = precoVenda;
 	}
 
-	public Double getPercentual_desconto() {
-		return percentual_desconto;
+	public Double getPercentualDesconto() {
+		return percentualDesconto;
 	}
 
-	public void setPercentual_desconto(Double percentual_desconto) {
-		this.percentual_desconto = percentual_desconto;
+	public void setPercentualDesconto(Double ercentualDesconto) {
+		this.percentualDesconto = ercentualDesconto;
 	}
 
-	public Double getValor_bruto() {
-		return valor_bruto;
+	public Double getValorBruto() {
+		return valorBruto;
 	}
 
-	public void setValor_bruto(Double valor_bruto) {
-		this.valor_bruto = valor_bruto;
+	public void setValorBruto(Double valorBruto) {
+		this.valorBruto = valorBruto;
 	}
 
-	public Double getValor_liquido() {
-		return valor_liquido;
+	public Double getValorLiquido() {
+		return valorLiquido;
 	}
 
-	public void setValor_liquido(Double valor_liquido) {
-		this.valor_liquido = valor_liquido;
+	public void setValorLiquido(Double valorLiquido) {
+		this.valorLiquido = valorLiquido;
 	}
 
 	public Produto getProduto() {
@@ -98,6 +106,14 @@ public class PedidoIten {
 
 	public void setProduto(Produto produto) {
 		this.produto = produto;
+	}
+
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
 	}
 
 	@Override

@@ -50,7 +50,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(DataPedidoException.class)
 	public ResponseEntity<Object> handleDataEmprestimoAnteriorException(DataPedidoException ex) {
 		List<ErroCampo> erros = new ArrayList<>();
-		erros.add(new ErroCampo("dataEmprestimo", "Data de pedido não pode ser anterior a data de hoje."));
+		erros.add(new ErroCampo("dataPedido", "Data do pedido não pode ser anterior a data de hoje."));
 
 		ErroResposta erroResposta = new ErroResposta(HttpStatus.BAD_REQUEST.value(), "Existem Campos Inválidos",
 				LocalDateTime.now(), erros);

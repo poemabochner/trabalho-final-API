@@ -1,13 +1,16 @@
 package br.org.serratec.trabalho.service;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import br.org.serratec.trabalho.domain.Produto;
+import br.org.serratec.trabalho.dto.ProdutoDTO;
 import br.org.serratec.trabalho.dto.ProdutoInserirDTO;
 import br.org.serratec.trabalho.exception.DataNotFoundException;
 import br.org.serratec.trabalho.exception.DescricaoException;
@@ -31,13 +34,11 @@ public class ProdutoService {
 		return produto.get();
 	}
 
-	public Produto incluir(ProdutoInserirDTO produtoInserirDTO) {
+	public ProdutoDTO incluir(ProdutoInserirDTO produtoInserirDTO, MultipartFile file) throws IOException {
 		Optional<Produto> produtoOptional = produtoRepository
 				.findByDescricaoProduto(produtoInserirDTO.getDescricaoInserida());
 
-		Produto produtoBanco = produtoOptional.get();
-
-		if (produtoBanco.getDescricaoProduto().equals(produtoInserirDTO.getDescricaoInserida())) {
+		if (produtoOptional.isPresent()) {
 			throw new DescricaoException(
 					"Já existe um produto com está descrição: " + produtoInserirDTO.getDescricaoInserida());
 		}
@@ -50,9 +51,10 @@ public class ProdutoService {
 		produto.setValorUnitario(produtoInserirDTO.getValorUnitarioInserido());
 		produto.setCategoria(produtoInserirDTO.getCategoriaInserida());
 		produto.setDataCadastro(LocalDate.now());
-
+		produto.setTipoArquivo(file.getContentType());
+		produto.setImagem(file.getBytes());
 		produto = produtoRepository.save(produto);
-		return produto;
+		return new ProdutoDTO(produto);
 	}
 
 	public Produto alterar(Long id, Produto produto) throws DataNotFoundException {
