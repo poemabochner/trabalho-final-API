@@ -35,7 +35,7 @@ Desenvolvemos a API-Restful de um E-commerce a partir das regras de negócio pr�
 * `Funcionalidade 6:` A autenticação e o controle de acesso à API estão implementadas (com o módulo de segurança do Spring + JWT).
 
 
-#<a name="tecnologias-utilizadas"></a> 🌸 Tecnologias Utilizadas:
+# <a name="tecnologias-utilizadas"></a> 🌸 Tecnologias Utilizadas:
 * ``Java 11``
 * ``Spring Tool Suite 4``
 * ``DBeaver``
