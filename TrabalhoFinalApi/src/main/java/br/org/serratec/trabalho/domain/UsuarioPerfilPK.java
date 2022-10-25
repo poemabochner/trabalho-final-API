@@ -1,5 +1,6 @@
 package br.org.serratec.trabalho.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Embeddable;
@@ -7,7 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Embeddable
-public class UsuarioPerfilPK {
+public class UsuarioPerfilPK implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "id_usuario")
 	private Usuario idUsuario;
