@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,14 +37,20 @@ public class PedidoController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Pedido> buscarPedido(@PathVariable Long id) {
+	public ResponseEntity<Pedido> buscarPedido(@PathVariable Long id) throws DataPedidoException {
 		Pedido pedido = pedidoService.buscaPorId(id);
 		return ResponseEntity.ok(pedido);
 	}
 
 	@GetMapping("/relatorio")
-	public ResponseEntity<List<RelatorioDTO>> listar() {
+	public ResponseEntity<List<RelatorioDTO>> listarRelatorio() {
 		return ResponseEntity.ok(pedidoService.buscarTodosRelatorios());
+	}
+
+	@GetMapping("/relatorio/{id}")
+	public ResponseEntity<RelatorioDTO> listarRelatorioPorId(@PathVariable Long id) throws DataPedidoException {
+		RelatorioDTO relatorio = pedidoService.buscarRelatorioPorId(id);
+		return ResponseEntity.ok(relatorio);
 	}
 
 	@PostMapping
@@ -55,8 +62,14 @@ public class PedidoController {
 		return ResponseEntity.created(uri).body(pedido);
 	}
 
+	@PutMapping("/{id}")
+	public ResponseEntity<Pedido> atualizar(@PathVariable Long id, @Valid @RequestBody Pedido pedido)
+			throws DataPedidoException {
+		return ResponseEntity.ok(pedidoService.atualizar(id, pedido));
+	}
+
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> excluir(@PathVariable Long id) {
+	public ResponseEntity<Void> excluir(@PathVariable Long id) throws DataPedidoException {
 		pedidoService.deletar(id);
 		return ResponseEntity.noContent().build();
 	}

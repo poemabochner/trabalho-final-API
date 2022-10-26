@@ -42,10 +42,10 @@ public class PedidoService {
 		return pedidoRepository.findAll();
 	}
 
-	public Pedido buscaPorId(Long id) {
+	public Pedido buscaPorId(Long id) throws DataPedidoException {
 		Optional<Pedido> pedido = pedidoRepository.findById(id);
 		if (!pedido.isPresent()) {
-			throw new DataNotFoundException("O produto com o id:" + id + " não foi encontrado");
+			throw new DataNotFoundException("O pedido com o id:" + id + " não foi encontrado");
 		}
 		return pedido.get();
 	}
@@ -59,6 +59,21 @@ public class PedidoService {
 		for (Pedido pedido : pedidos) {
 			relatorioDTO.add(new RelatorioDTO(pedido));
 		}
+
+		return relatorioDTO;
+	}
+
+	public RelatorioDTO buscarRelatorioPorId(Long id) throws DataPedidoException {
+
+		Optional<Pedido> pedido = pedidoRepository.findById(id);
+
+		if (!pedido.isPresent()) {
+			throw new DataNotFoundException("O pedido com o id:" + id + " não foi encontrado");
+		}
+
+		Pedido pedidoE = pedido.get();
+
+		RelatorioDTO relatorioDTO = new RelatorioDTO(pedidoE);
 
 		return relatorioDTO;
 	}
@@ -145,7 +160,23 @@ public class PedidoService {
 		return pedido;
 	}
 
-	public void deletar(Long id) {
+	public Pedido atualizar(Long id, Pedido pedidoI) throws DataPedidoException {
+		Optional<Pedido> pedido = pedidoRepository.findById(id);
+		if (!pedido.isPresent()) {
+			throw new DataNotFoundException("O pedido com o id:" + id + " não foi encontrado");
+		}
+		Pedido pedidoBanco = pedido.get();
+
+		pedidoBanco.setDataPedido(pedidoI.getDataPedido());
+		pedidoBanco.setDataEntrega(pedidoI.getDataEntrega());
+		pedidoBanco.setDataEnvio(pedidoI.getDataEnvio());
+		pedidoBanco.setStatus(pedidoI.getStatus());
+		pedidoBanco.setCliente(pedidoI.getCliente());
+
+		return pedidoBanco;
+	}
+
+	public void deletar(Long id) throws DataPedidoException {
 		Optional<Pedido> produtoBanco = pedidoRepository.findById(id);
 		if (!produtoBanco.isPresent()) {
 			throw new DataNotFoundException("O produto com o id:" + id + " não foi encontrado");
