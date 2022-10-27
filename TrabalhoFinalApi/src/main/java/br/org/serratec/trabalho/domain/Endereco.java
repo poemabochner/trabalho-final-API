@@ -10,39 +10,49 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "endereco")
 public class Endereco {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_endereco")
+	@ApiModelProperty(value="Identificador unico de endereço")
 	private Long idEndereco;
 
 	@NotBlank
 	@Column(name = "cep", nullable = false, length = 8)
+	@ApiModelProperty(value="Cep do cliente", required = true)
 	private String cep;
 
 	@NotBlank
 	@Column(name = "rua", nullable = false, length = 80)
+	@ApiModelProperty(value="Rua do cliente", required = true)
 	private String rua;
 
 	@NotBlank
 	@Column(name = "bairro", nullable = false, length = 50)
+	@ApiModelProperty(value="Bairro do cliente", required = true)
 	private String bairro;
 
 	@NotBlank
 	@Column(name = "cidade", nullable = false, length = 80)
+	@ApiModelProperty(value="Cidade do cliente", required = true)
 	private String cidade;
 
 	@NotBlank
 	@Column(name = "numero", nullable = false, length = 20)
+	@ApiModelProperty(value="Número do cliente", required = true)
 	private String numero;
 
 	@Column(name = "complemento", length = 80)
+	@ApiModelProperty(value="Complemento do cliente", required = true)
 	private String complemento;
 
 	@NotBlank
 	@Column(name = "uf", nullable = false, length = 2)
+	@ApiModelProperty(value="UF do cliente", required = true)
 	private String uf;
 
 	public Long getIdEndereco() {

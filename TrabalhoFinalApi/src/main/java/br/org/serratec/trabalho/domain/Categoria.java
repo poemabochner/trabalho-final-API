@@ -10,19 +10,24 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "categoria")
 public class Categoria {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@ApiModelProperty(value="Identificador unico de categoria")
 	private Long idCategoria;
 
 	@NotBlank
 	@Column(name = "nome_categoria", nullable = false, length = 30, unique = true)
+	@ApiModelProperty(value="Nome da categoria")
 	private String nomeCategoria;
 
 	@NotBlank
 	@Column(name = "descricao_categoria", nullable = false, length = 200)
+	@ApiModelProperty(value="Descrição da categoria")
 	private String descricaoCategoria;
 
 	public Long getIdCategoria() {
@@ -36,7 +41,7 @@ public class Categoria {
 	public String getNomeCategoria() {
 		return nomeCategoria;
 	}
-
+	
 	public void setNomeCategoria(String nomeCategoria) {
 		this.nomeCategoria = nomeCategoria;
 	}

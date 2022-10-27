@@ -7,14 +7,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "perfil")
 public class Perfil {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_perfil")
+	@ApiModelProperty(value="Identificador unico perfil")
 	private Long id;
 
+	@ApiModelProperty(value="Nome do perfil")
 	private String nome;
 
 	public Long getId() {

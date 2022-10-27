@@ -3,14 +3,26 @@ package br.org.serratec.trabalho.dto;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.validation.constraints.NotBlank;
+
 import br.org.serratec.trabalho.domain.Perfil;
 import br.org.serratec.trabalho.domain.Usuario;
 import br.org.serratec.trabalho.domain.UsuarioPerfil;
+import io.swagger.annotations.ApiModelProperty;
 
 public class UsuarioDTO {
+	@ApiModelProperty(value="Identificador unico de usuario")
 	private Long id;
+	
+	@NotBlank
+	@ApiModelProperty(value="Nome do usuario", required = true)
 	private String nome;
+	
+	@NotBlank
+	@ApiModelProperty(value="Email do usuario", required = true)
 	private String email;
+	
+	@ApiModelProperty(value="Perfil do usuario", required = true)
 	private Set<Perfil> perfis;
 
 	public UsuarioDTO(Long id, String nome, String email) {

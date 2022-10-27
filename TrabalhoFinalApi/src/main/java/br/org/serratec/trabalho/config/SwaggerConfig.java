@@ -28,10 +28,10 @@ public class SwaggerConfig {
 	}
 
 	private ApiInfo apiInfo() {
-		ApiInfo apiInfo = new ApiInfoBuilder().title("API de Teste")
-				.description("Essa é uma API desenvolvida para tests").license("Apache License Version 2.0")
+		ApiInfo apiInfo = new ApiInfoBuilder().title("SerrAnel: E O Meu Anel Do Poder")
+				.description("Essa é uma API desenvolvida para aneis de todos os tamanhos.").license("Apache License Version 2.0")
 				.licenseUrl("https://www.apache.org/license/LICENSE-2.0").version("1.0.0")
-				.contact(new Contact("Serratec", "www.serrtatec.org.br", "teste@gmail.com")).build();
+				.contact(new Contact("Serratec", "www.serrtatec.org.br", "taldapispagola@gmail.com")).build();
 		return apiInfo;
 	}
 

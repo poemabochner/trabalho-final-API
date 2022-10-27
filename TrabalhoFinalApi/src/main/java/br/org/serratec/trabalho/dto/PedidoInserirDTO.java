@@ -9,26 +9,33 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.org.serratec.trabalho.domain.Cliente;
+import io.swagger.annotations.ApiModelProperty;
 
 public class PedidoInserirDTO {
 	@NotNull
 	@JsonFormat(pattern = "dd/MM/yyyy")
+	@ApiModelProperty(value="Data do pedido", required = true)
 	private LocalDate dataPedidoInserida;
 
 	@NotNull
 	@JsonFormat(pattern = "dd/MM/yyyy")
+	@ApiModelProperty(value="Data do entrega", required = true)
 	private LocalDate dataEntregaInserida;
 
 	@NotNull
 	@JsonFormat(pattern = "dd/MM/yyyy")
+	@ApiModelProperty(value="Data do envio", required = true)
 	private LocalDate dataEnvioInserida;
 
 	@NotBlank
+	@ApiModelProperty(value="Status do pedido", required = true)
 	private String statusInserido;
 
 	@NotNull
+	@ApiModelProperty(value="Cliente", required = true)
 	private Cliente clienteInserido;
-
+	
+	@ApiModelProperty(value="Items do pedido")
 	private List<PedidoItenInseridoDTO> itensInseridos;
 
 	public LocalDate getDataPedidoInserida() {

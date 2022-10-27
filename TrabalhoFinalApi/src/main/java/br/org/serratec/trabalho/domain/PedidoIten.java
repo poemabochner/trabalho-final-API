@@ -14,42 +14,52 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "item_pedido")
 public class PedidoIten {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_item_pedido")
+	@ApiModelProperty(value="Identificador unico de items por pedido")
 	private Long idPedidoIten;
 
 	@NotNull
 	@Column(name = "quantidade", nullable = false)
+	@ApiModelProperty(value="Quantidade", required = true)
 	private Integer quantidade;
 
 	@NotNull
 	@Column(name = "preco_venda", nullable = false)
+	@ApiModelProperty(value="Preço de venda", required = true)
 	private Double precoVenda;
 
 	@NotNull
 	@Column(name = "percentual_desconto", nullable = false)
+	@ApiModelProperty(value="Percentual de desconto", required = true)
 	private Double percentualDesconto;
 
 	@NotNull
 	@Column(name = "valor_bruto", nullable = false)
+	@ApiModelProperty(value="Valor bruto", required = true)
 	private Double valorBruto;
 
 	@NotNull
 	@Column(name = "valor_liquido", nullable = false)
+	@ApiModelProperty(value="Valor liquido", required = true)
 	private Double valorLiquido;
 
 	@ManyToOne
 	@NotNull
 	@JoinColumn(name = "id_produto")
+	@ApiModelProperty(value="Identificador unico de produto")
 	private Produto produto;
 
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_pedido")
+	@ApiModelProperty(value="Pedido")
 	private Pedido pedido;
 
 	public Long getIdPedidoIten() {

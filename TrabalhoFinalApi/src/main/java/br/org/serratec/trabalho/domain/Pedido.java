@@ -19,44 +19,54 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "pedido")
 public class Pedido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_pedido")
+	@ApiModelProperty(value="Identificador unico de pedido")
 	private Long idPedido;
 
 	@NotNull
 	@Column(name = "data_pedido", nullable = false)
 	@JsonFormat(pattern = "dd/MM/yyyy")
+	@ApiModelProperty(value="Data do pedido", required = true)
 	private LocalDate dataPedido;
 
 	@NotNull
 	@Column(name = "data_entrega")
 	@JsonFormat(pattern = "dd/MM/yyyy")
+	@ApiModelProperty(value="Data de entrega", required = true)
 	private LocalDate dataEntrega;
 
 	@NotNull
 	@Column(name = "data_envio")
 	@JsonFormat(pattern = "dd/MM/yyyy")
+	@ApiModelProperty(value="Data do envio", required = true)
 	private LocalDate dataEnvio;
 
 	@NotBlank
 	@Column(name = "status", nullable = false, length = 1)
+	@ApiModelProperty(value="Status do pedido", required = true)
 	private String status;
 
 	@NotNull
 	@Column(name = "valor_total", nullable = false)
+	@ApiModelProperty(value="Valor total", required = true)
 	private Double valorTotal;
 
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "id_cliente", nullable = false)
+	@ApiModelProperty(value="Identificador unico de cliente")
 	private Cliente cliente;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_pedido")
+	@ApiModelProperty(value="Lista de items do pedido")
 	private List<PedidoIten> itens;
 
 	public Long getIdPedido() {

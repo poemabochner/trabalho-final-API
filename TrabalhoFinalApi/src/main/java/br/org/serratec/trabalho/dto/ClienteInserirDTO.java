@@ -7,28 +7,37 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class ClienteInserirDTO {
 
 	@NotBlank
+	@ApiModelProperty(value="Nome do cliente", required = true)
 	private String nomeCompleto;
 
 	@NotBlank
+	@ApiModelProperty(value="Email do cliente", required = true)
 	private String email;
 
 	@NotBlank
+	@ApiModelProperty(value="CPF do cliente", required = true)
 	private String cpf;
 
 	@NotBlank
+	@ApiModelProperty(value="Telefone do cliente", required = true)
 	private String telefone;
 
 	@NotNull
 	@JsonFormat(pattern = "dd/MM/yyyy")
+	@ApiModelProperty(value="Data de nascimento do cliente", required = true)
 	private LocalDate dataNascimento;
 
 	@NotBlank
+	@ApiModelProperty(value="Cep do cliente", required = true)
 	private String cepInserido;
 
 	@NotBlank
+	@ApiModelProperty(value="Numero do cliente", required = true)
 	private String numeroInserido;
 
 	public String getNomeCompleto() {

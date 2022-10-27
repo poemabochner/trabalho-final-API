@@ -1,16 +1,29 @@
 package br.org.serratec.trabalho.dto;
 
 import br.org.serratec.trabalho.domain.PedidoIten;
+import io.swagger.annotations.ApiModelProperty;
 
 public class RelatorioDePedidoDTO {
 
+	@ApiModelProperty(value="Identificador unico de produto")
 	private Long idProduto;
 
+	@ApiModelProperty(value="Nome do Produto")
 	private String nomeProduto;
+	
+	@ApiModelProperty(value="Quantidade")
 	private Integer qunatidade;
+	
+	@ApiModelProperty(value="Preço de venda")
 	private Double precoVenda;
+	
+	@ApiModelProperty(value="Valor do produto")
 	private Double valorBruto;
+	
+	@ApiModelProperty(value="Percentual de desconto")
 	private Double percentualDesconto;
+	
+	@ApiModelProperty(value="Valor liquido")
 	private Double valorLiquido;
 
 	public RelatorioDePedidoDTO() {

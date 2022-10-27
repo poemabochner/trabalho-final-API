@@ -16,36 +16,44 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.org.serratec.trabalho.domain.Categoria;
 import br.org.serratec.trabalho.domain.Produto;
+import io.swagger.annotations.ApiModelProperty;
 
 public class ProdutoDTO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@ApiModelProperty(value="Identificador unico de produto")
 	private Long idProduto;
 
 	@NotBlank
 	@Column(name = "nome_produto", nullable = false, length = 30, unique = true)
+	@ApiModelProperty(value="Nome do Produto", required = true)
 	private String nomeProduto;
 
 	@NotBlank
 	@Column(name = "descricao_produto", length = 200)
+	@ApiModelProperty(value="Descrição do Produto", required = true)
 	private String descricaoProduto;
 
 	@NotNull
 	@Column(name = "qtd_estoque")
+	@ApiModelProperty(value="Quantidade de estoque", required = true)
 	private Integer quantidadeEstoque;
 
 	@NotNull
 	@Column(name = "data_cadastro")
 	@JsonFormat(pattern = "dd/MM/yyyy")
+	@ApiModelProperty(value="Data de cadastro", required = true)
 	private LocalDate dataCadastro;
 
 	@NotNull
 	@Column(name = "valor_unitario", nullable = false)
+	@ApiModelProperty(value="Valor Unitario", required = true)
 	private Double valorUnitario;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@NotNull
 	@JoinColumn(name = "id_categoria", nullable = false)
+	@ApiModelProperty(value="Categoria", required = true)
 	private Categoria categoria;
 
 	public ProdutoDTO(Produto produto) {

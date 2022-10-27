@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+
+import io.swagger.annotations.ApiModelProperty;
 
 @Entity
 @Table(name = "usuario")
@@ -17,14 +20,21 @@ public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@ApiModelProperty(value="Identificador unico de usuario")
 	private Long id;
-
+	
+	@NotBlank
+	@ApiModelProperty(value="Nome do usuario", required = true)
 	private String nome;
-
+	
+	@NotBlank
+	@ApiModelProperty(value="Email do usuario", required = true)
 	private String email;
-
+	
+	@NotBlank
+	@ApiModelProperty(value="Senha do usuario", required = true)
 	private String senha;
-
+	
 	@OneToMany(mappedBy = "usuarioPerfilPK.idUsuario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<UsuarioPerfil> usuarioPerfis;
 

@@ -21,48 +21,59 @@ import org.hibernate.annotations.Type;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "produto")
 public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@ApiModelProperty(value="Identificador unico de produto")
 	private Long idProduto;
 
 	@NotBlank
 	@Column(name = "nome_produto", nullable = false, length = 30, unique = true)
+	@ApiModelProperty(value="Nome do produto", required = true)
 	private String nomeProduto;
 
 	@NotBlank
 	@Column(name = "descricao_produto", length = 200)
+	@ApiModelProperty(value="Descrição do produto", required = true)
 	private String descricaoProduto;
 
 	@NotNull
 	@Column(name = "qtd_estoque")
+	@ApiModelProperty(value="Quantidade no estoque", required = true)
 	private Integer quantidadeEstoque;
 
 	@NotNull
 	@Column(name = "data_cadastro")
 	@JsonFormat(pattern = "dd/MM/yyyy")
+	@ApiModelProperty(value="Data de cadastro", required = true)
 	private LocalDate dataCadastro;
 
 	@NotNull
 	@Column(name = "valor_unitario", nullable = false)
+	@ApiModelProperty(value="Valor unitario do produto", required = true)
 	private Double valorUnitario;
 
 	@JsonIgnore
 	@Lob
 	@Type(type = "org.hibernate.type.BinaryType")
 	@Column(name = "imagem", nullable = false)
+	@ApiModelProperty(value="dados da imagem", required = true)
 	private byte[] imagem;
 
 	@JsonIgnore
 	@NotBlank
 	@Column(name = "tipo_arquivo", length = 100)
+	@ApiModelProperty(value="Tipo de arquivo da imagem", required = true)
 	private String tipoArquivo;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@NotNull
 	@JoinColumn(name = "id_categoria", nullable = false)
+	@ApiModelProperty(value="Catgoria")
 	private Categoria categoria;
 
 	public Long getIdProduto() {

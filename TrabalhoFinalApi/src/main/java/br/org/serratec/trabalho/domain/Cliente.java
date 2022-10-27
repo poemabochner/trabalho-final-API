@@ -21,34 +21,42 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "cliente")
 public class Cliente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@ApiModelProperty(value="Identificador unico de Cliente")
 	private Long idCliente;
 
 	@NotBlank
 	@Column(name = "nome_completo", nullable = false, length = 50)
+	@ApiModelProperty(value="Nome do cliente", required = true)
 	private String nomeCompleto;
 
 	@NotBlank
 	@Email
 	@Column(name = "email", nullable = false, length = 80, unique = true)
+	@ApiModelProperty(value="Email do cliente", required = true)
 	private String email;
 
 	@NotBlank
 	@CPF
 	@Column(name = "cpf", nullable = false, length = 11, unique = true)
+	@ApiModelProperty(value="CPF do cliente", required = true)
 	private String cpf;
 
 	@NotBlank
 	@Column(name = "telefone", nullable = false, length = 40)
+	@ApiModelProperty(value="Telefone do cliente", required = true)
 	private String telefone;
 
 	@NotNull
 	@Column(name = "data_nascimento")
 	@JsonFormat(pattern = "dd/MM/yyyy")
+	@ApiModelProperty(value="Data de nascimento do cliente", required = true)
 	private LocalDate dataNascimento;
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

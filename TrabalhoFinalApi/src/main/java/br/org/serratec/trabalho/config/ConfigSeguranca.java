@@ -17,6 +17,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import br.org.serratec.trabalho.security.JWTAuthenticationFilter;
+import br.org.serratec.trabalho.security.JWTAuthorizationFilter;
 import br.org.serratec.trabalho.security.JWTUtil;
 
 @Configuration
@@ -32,34 +34,28 @@ public class ConfigSeguranca extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
 	}
 
-//	@Override
-//	public void configure(WebSecurity web) throws Exception {
-//		web.ignoring().antMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**");
-//	}
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.csrf().disable().authorizeHttpRequests().antMatchers("/").permitAll()
+				.antMatchers(HttpMethod.GET, "/api/categoria", "/api/produto").permitAll()
+				.antMatchers(HttpMethod.GET, "/api/cliente").hasAnyAuthority("ADMIN")
+				.antMatchers(HttpMethod.GET, "/api/pedido").hasAnyAuthority("ADMIN", "USER")
+				.antMatchers(HttpMethod.PUT, "/api/pedido").hasAnyAuthority("ADMIN", "USER")
+				.antMatchers(HttpMethod.POST, "/api/categoria", "/api/produto").hasAuthority("ADMIN")
+				.antMatchers(HttpMethod.PUT, "/api/categoria", "/api/produto").hasAuthority("ADMIN")
+				.antMatchers(HttpMethod.DELETE, "/api/categoria", "/api/produto", "/api/pedido").hasAuthority("ADMIN")
+				.anyRequest().authenticated().and().httpBasic().and().cors().and().sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		http.addFilter(new JWTAuthenticationFilter(this.authenticationManager(), jwtUtil));
+		http.addFilter(new JWTAuthorizationFilter(this.authenticationManager(), jwtUtil, userDetailsService));
+	}
 
 //	@Override
 //	protected void configure(HttpSecurity http) throws Exception {
-//		http.authorizeHttpRequests().antMatchers("/api/**").hasAuthority("ADMIN")
-//
-//				.antMatchers("/funcionarios/salarios-por-idade").permitAll()
-//				.antMatchers(HttpMethod.GET, "//funcionarios/salario", "/funcionarios/pagina", "/funcionarios/nome")
-//				.hasAuthority("ADMIN").antMatchers(HttpMethod.GET, "/usuarios").hasAnyAuthority("ADMIN", "USER")
-//				.antMatchers(HttpMethod.POST, "/usuarios").hasAuthority("ADMIN")
-//				.anyRequest().authenticated().and().sessionManagement()
-//				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().cors().and().csrf().disable();
-//		http.addFilter(new JWTAuthenticationFilter(this.authenticationManager(), jwtUtil));
-//		http.addFilter(new JWTAuthorizationFilter(this.authenticationManager(), jwtUtil, userDetailsService));
+//		http.cors().and().csrf().disable().exceptionHandling().and().sessionManagement()
+//				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests().anyRequest()
+//				.permitAll();
 //	}
-
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.cors().and().csrf().disable().exceptionHandling().and().sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-				.antMatchers("/funcionarios/salarios-por-idade").permitAll()
-				.antMatchers(HttpMethod.GET, "//funcionarios/salario", "/funcionarios/pagina", "/funcionarios/nome")
-				.hasAuthority("ADMIN").antMatchers(HttpMethod.GET, "/usuarios").hasAnyAuthority("ADMIN", "USER")
-				.antMatchers(HttpMethod.POST, "/usuarios").hasAuthority("ADMIN").anyRequest().permitAll();
-	}
 
 	@Override
 	public void configure(WebSecurity web) {

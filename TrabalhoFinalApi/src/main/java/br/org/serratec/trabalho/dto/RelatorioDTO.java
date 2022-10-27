@@ -6,15 +6,19 @@ import java.util.List;
 
 import br.org.serratec.trabalho.domain.Pedido;
 import br.org.serratec.trabalho.domain.PedidoIten;
+import io.swagger.annotations.ApiModelProperty;
 
 public class RelatorioDTO {
 
 	private Long idPedido;
-
+	
+	@ApiModelProperty(value="Data do Peddo")
 	private LocalDate dataPeddo;
-
+	
+	@ApiModelProperty(value="Valor total")
 	private Double valorTotal;
-
+	
+	@ApiModelProperty(value="Relatorio de pedido")
 	private List<RelatorioDePedidoDTO> itens;
 
 	public RelatorioDTO(Pedido pedido) {

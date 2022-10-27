@@ -4,17 +4,27 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import br.org.serratec.trabalho.domain.Categoria;
+import io.swagger.annotations.ApiModelProperty;
 
 public class ProdutoInserirDTO {
 	@NotBlank
+	@ApiModelProperty(value="Nome do produto", required = true)
 	private String nomeInserido;
+	
 	@NotBlank
+	@ApiModelProperty(value="Descrição do produto", required = true)
 	private String descricaoInserida;
+	
 	@NotNull
-	private Integer qtdEstoqueInserida;
+	@ApiModelProperty(value="Quantidade no Estosque", required = true)
+	private Integer qtdEstoqueInserida
+	;
 	@NotNull
+	@ApiModelProperty(value="Valor unitario do produto", required = true)
 	private Double valorUnitarioInserido;
+	
 	@NotNull
+	@ApiModelProperty(value="Categoria", required = true)
 	private Categoria categoriaInserida;
 
 	public String getNomeInserido() {
