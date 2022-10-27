@@ -105,6 +105,16 @@ public class PedidoController {
 		return ResponseEntity.created(uri).body(pedido);
 	}
 	
+	
+	@ApiOperation(value="Atualiza dados de um pedido", notes="Atualizar Pedido")
+	@ApiResponses(value= {
+	@ApiResponse(code=200, message="Pedido Atualizado"),
+	@ApiResponse(code=201, message="Pedido atualizado com sucesso"),
+	@ApiResponse(code=401, message="Erro de autenticação"),
+	@ApiResponse(code=403, message="Não há permissão para acessar o recurso"),
+	@ApiResponse(code=404, message="Recurso não encontrado"),
+	@ApiResponse(code=505, message="Exceção interna da aplicação"),
+	})
 	@PutMapping("/{id}")
 	public ResponseEntity<Pedido> atualizar(@PathVariable Long id, @Valid @RequestBody Pedido pedido)
 			throws DataPedidoException {

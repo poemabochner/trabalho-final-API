@@ -100,9 +100,10 @@ public class ProdutoController {
 		return ResponseEntity.created(uri).body(produto);
 	}
 
-	@ApiOperation(value="Atualiza dados de um produto", notes="Atualizar Cliente")
+	@ApiOperation(value="Atualiza dados de um produto", notes="Atualizar Produto")
 	@ApiResponses(value= {
-	@ApiResponse(code=200, message="Cliente Atualizado"),
+	@ApiResponse(code=200, message="Produto Atualizado"),
+	@ApiResponse(code=201, message="Produto atualizado com sucesso"),
 	@ApiResponse(code=401, message="Erro de autenticação"),
 	@ApiResponse(code=403, message="Não há permissão para acessar o recurso"),
 	@ApiResponse(code=404, message="Recurso não encontrado"),

@@ -78,6 +78,7 @@ public class ClienteController {
 	@ApiOperation(value="Atualiza dados de um cliente", notes="Atualizar Cliente")
 	@ApiResponses(value= {
 	@ApiResponse(code=200, message="Cliente Atualizado"),
+	@ApiResponse(code=201, message="Cliente Atualizado"),
 	@ApiResponse(code=401, message="Erro de autenticação"),
 	@ApiResponse(code=403, message="Não há permissão para acessar o recurso"),
 	@ApiResponse(code=404, message="Recurso não encontrado"),

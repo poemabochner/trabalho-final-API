@@ -78,6 +78,7 @@ public class CategoriaController {
 	@ApiOperation(value="Atualiza dados de uma categoria", notes="Atualizar Categoria")
 	@ApiResponses(value= {
 	@ApiResponse(code=200, message="Categoria Atualizado"),
+	@ApiResponse(code=201, message="Categoria Atualizado"),
 	@ApiResponse(code=401, message="Erro de autenticação"),
 	@ApiResponse(code=403, message="Não há permissão para acessar o recurso"),
 	@ApiResponse(code=404, message="Recurso não encontrado"),
